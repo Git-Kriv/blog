@@ -1,0 +1,43 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.py[co]
+*.so
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media
+
+# Development
+.env
+.venv/
+*.sqlite3
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+include/
+bin/
+*.egg
+
+# PyCharm, VS Code
+.idea/
+*.iml
+.vscode/
+
+# macOS
+.DS_Store
