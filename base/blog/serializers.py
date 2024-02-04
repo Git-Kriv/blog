@@ -11,7 +11,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'new_agency', 'link')
+        fields = ('id', 'title', 'news_agency', 'link')
 
 
 class ProjectMiniSerializer(serializers.ModelSerializer):

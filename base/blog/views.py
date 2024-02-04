@@ -26,7 +26,8 @@ def project_list(request, format=None):
         return paginator.get_paginated_response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = ProjectMiniSerializer(data=request.data)
+        data = request.data
+        serializer = ProjectMiniSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -74,7 +75,8 @@ def project_detail(request, pk, format=None):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':
-        serializer = ProjectSerializer(project, data=request.DATA)
+        data = request.data # since DATA is deprecated
+        serializer = ProjectSerializer(project, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_200_OK)
@@ -99,7 +101,8 @@ def article_list(request, format=None):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = ArticleSerializer(data=request.DATA)
+        data = request.data
+        serializer = ArticleSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
@@ -123,7 +126,8 @@ def article_detail(request, pk, format=None):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':
-        serializer = ArticleSerializer(article, data=request.DATA)
+        data = request.data # since DATA is deprecated
+        serializer = ArticleSerializer(article, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_200_OK)

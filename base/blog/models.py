@@ -36,10 +36,10 @@ class Project(models.Model):
 
 
 class Article(models.Model):
-    id         = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title      = models.CharField(max_length = 50)
-    new_agency = models.CharField(max_length = 50)
-    link       = models.URLField(max_length = 50)
+    id          = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title       = models.CharField(max_length = 50)
+    news_agency = models.CharField(max_length = 50)
+    link        = models.URLField(max_length = 50)
 
     def __str__(self):
         return self.title
