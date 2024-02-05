@@ -7,7 +7,7 @@ from blog.models import Project, Article
 from blog.serializers import ProjectSerializer, ArticleSerializer, ProjectMiniSerializer
 
 
-PAGE_SIZE = 30
+PAGE_SIZE = 10
 
 
 @api_view(['GET', 'POST'])
@@ -35,27 +35,6 @@ def project_list(request, format=None):
 
 
 
-
-
-# @api_view(['GET', 'POST'])
-# # NOTE: ADD Permission classes here if authentication is needed for the API
-# # @permission_classes((IsAuthenticated,)), etc...
-# def project_list(request, format=None):
-#     """
-#     List all projects, or create a new project.
-#     """
-#     if request.method == 'GET':
-#         projects = Project.objects.all()
-#         serializer = ProjectSerializer(projects, many=True)
-#         return Response(serializer.data)
-
-#     elif request.method == 'POST':
-#         serializer = ProjectSerializer(data=request.DATA)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors,
-#                         status=status.HTTP_400_BAD_REQUEST)
     
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -108,6 +87,8 @@ def article_list(request, format=None):
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,
                         status=status.HTTP_400_BAD_REQUEST)
+
+
     
 @api_view(['GET', 'PUT', 'DELETE'])
 # NOTE: ADD Permission classes here if authentication is needed for the API
@@ -140,6 +121,21 @@ def article_detail(request, pk, format=None):
     
 
 
+@api_view(['GET'])
+def project_categories(request, format=None):
+    """
+    List all articles by category.
+    """
+    try:
+        category = request.GET.get('category')
+    except:
+        return Response(data={"ERROR":"NO CATEGORY"},status=status.HTTP_400_BAD_REQUEST)
+    projects = Project.objects.filter(category=category)
+    if projects is not None:
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data,
+                        status=status.HTTP_200_OK)
+    return Response(data={"ERROR":"NO CONTENT"},status=status.HTTP_404_NOT_FOUND)
 
 
 

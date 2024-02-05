@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import django_on_heroku
+# import django_on_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.101", "127.0.0.1"] # TODO: Change this to host IP when deploying
+ALLOWED_HOSTS = ["192.168.1.101", "127.0.0.1", "192.168.0.100"] # TODO: Change this to host IP when deploying
 
 
 # Application definition
@@ -128,4 +128,4 @@ STATIC_ROOT = "static/root/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Activate Django-Heroku.
-django_on_heroku.settings(locals())
+# django_on_heroku.settings(locals())
