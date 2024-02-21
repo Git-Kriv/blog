@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 # import django_on_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.101", "127.0.0.1", "192.168.0.100"] # TODO: Change this to host IP when deploying
+ALLOWED_HOSTS = ["*"] # TODO: Change this to host IP when deploying
 
 
 # Application definition
@@ -122,6 +123,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = "static/root/"
 
+MEDIA_URL = '/media/'
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -129,3 +134,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Activate Django-Heroku.
 # django_on_heroku.settings(locals())
+
+
+# Temporary Settings for SMTP Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kriv.temp@gmail.com'
+EMAIL_HOST_PASSWORD = 'ilzj wrpo peyq svmd'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
