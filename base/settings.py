@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-CSRF_TRUSTED_ORIGIN = ["*"]  # TODO in actual production
+CSRF_TRUSTED_ORIGINS = ["*"]  # TODO in actual production
 ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deploying
 
 
