@@ -9,8 +9,6 @@ from blog.models import Project, Article
 from blog.serializers import ProjectSerializer, ArticleSerializer, ProjectMiniSerializer
 
 
-
-
 PAGE_SIZE = 10
 
 
@@ -150,12 +148,11 @@ def send_email(request, format=None):
         send_mail(
             "Mail From Utpanna Website",
             message,
-            't6565508@gmail.com',
-            ['saurabhkumarnomeas@gmail.com'],
+            "t6565508@gmail.com",
+            ["saurabhkumarnomeas@gmail.com"],
             fail_silently=False,
         )
         return Response(status=status.HTTP_200_OK)
     except Exception as e:
-        print(request.headers)
         print(e)
         return Response(status=status.HTTP_400_BAD_REQUEST)
