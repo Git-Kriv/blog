@@ -10,12 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import environ
 import os
 from pathlib import Path
+
 
 # import django_on_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,12 +31,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env("DEBUG")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://web-production-4721.up.railway.app"
 ]  # TODO in actual production
-ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deploying
+ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deployinnfg
 
 
 # Application definition
@@ -81,10 +87,15 @@ WSGI_APPLICATION = "base.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("PGDATABASE"),
+        "USER": env("PGUSER"),
+        "PASSWORD": env("PGPASSWORD"),
+        "HOST": env("PGHOST"),
+        "PORT": env("PGPORT"),
     }
 }
 
@@ -140,7 +151,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Temporary Settings for SMTP Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

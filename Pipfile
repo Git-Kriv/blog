@@ -9,6 +9,8 @@ django-rest-framework = "*"
 django-on-heroku = "*"
 pillow = "*"
 gunicorn = "*"
+environ = "*"
+django-environ = "*"
 
 [dev-packages]
 
