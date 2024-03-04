@@ -148,8 +148,8 @@ def send_email(request, format=None):
         send_mail(
             "Mail From Utpanna Website",
             message,
-            "t6565508@gmail.com",
-            ["saurabhkumarnomeas@gmail.com"],
+            "kriv.connect@gmai.com",
+            ["kriv.temp@gmail.com"],
             fail_silently=False,
         )
         return Response(status=status.HTTP_200_OK)

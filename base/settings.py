@@ -37,11 +37,10 @@ CSRF_TRUSTED_ORIGINS = [
     "https://web-production-4721.up.railway.app"
 ]  # TODO in actual production
 ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deployinnfg
-
-
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
-
 INSTALLED_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # Uncomment this line when deploying
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -158,7 +158,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "kriv.temp@gmail.com"
-EMAIL_HOST_PASSWORD = "ilzj wrpo peyq svmd"
+EMAIL_HOST_USER = "kriv.connect@gmail.com"
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
