@@ -39,7 +39,7 @@ CSRF_TRUSTED_ORIGINS = [
 ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deployinnfg
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOWED_ORIGINS = [
-    "https://kriv-utpannadesignworks.web.app/",
+    "https://kriv-utpannadesignworks.web.app",
 ]
 
 
