@@ -37,7 +37,12 @@ CSRF_TRUSTED_ORIGINS = [
     "https://web-production-4721.up.railway.app"
 ]  # TODO in actual production
 ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deployinnfg
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOWED_ORIGINS = [
+    "https://kriv-utpannadesignworks.web.app/",
+]
+
+
 # Application definition
 INSTALLED_APPS = [
     "corsheaders",
