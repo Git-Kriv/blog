@@ -25,10 +25,10 @@ class Project(models.Model):
     country = models.CharField(max_length=50)
     context = models.TextField(blank=True)
     approach = models.CharField(max_length=50)
-    long_image1 = models.ImageField(upload_to="projects/", null=False)
-    long_image2 = models.ImageField(upload_to="projects/", null=True)
-    short_image1 = models.ImageField(upload_to="projects/", null=True)
-    short_image2 = models.ImageField(upload_to="projects/", null=True)
+    intro_image = models.ImageField(upload_to="projects/", null=False)
+    outro_image = models.ImageField(upload_to="projects/", null=True)
+    cover_image = models.ImageField(upload_to="projects/", null=True)
+    detail_image = models.ImageField(upload_to="projects/", null=True)
 
     def __str__(self):
         return self.title
