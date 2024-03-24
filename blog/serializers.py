@@ -2,27 +2,40 @@ from rest_framework import serializers
 from django.conf import settings
 from blog.models import Project, Article
 
+
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('id', 'category', 'title', 'client', 'service', 'date', 'duration', 'country', 'context', 'approach', 'long_image1', 'long_image2', 'short_image1', 'short_image2')
+        fields = (
+            "id",
+            "category",
+            "title",
+            "client",
+            "service",
+            "date",
+            "duration",
+            "country",
+            "context",
+            "approach",
+            "intro_image",
+            "outro_image",
+            "cover_image",
+            "detail_image",
+        )
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'news_agency', 'link')
+        fields = ("id", "title", "news_agency", "link")
 
 
 class ProjectMiniSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('id', 'category', 'title', 'context', 'short_image1')
+        fields = ("id", "category", "title", "context", "cover_image")
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['short_image1'] = instance.short_image1.url
+        data["cover_image"] = instance.cover_image.url
         return data
-
-
-

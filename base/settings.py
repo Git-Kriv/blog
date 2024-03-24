@@ -34,7 +34,7 @@ SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@
 DEBUG = env("DEBUG")
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-4721.up.railway.app"
+    "https://willing-roll-production.up.railway.app"
 ]  # TODO in actual production
 ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deployinnfg
 CORS_ORIGIN_ALLOW_ALL = False
