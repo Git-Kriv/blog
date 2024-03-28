@@ -1,3 +1,4 @@
+from typing import DefaultDict
 import uuid
 from django.db import models
 
@@ -16,15 +17,15 @@ CATEGORIES_CHOICES = (
 
 class Project(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    category = models.CharField(max_length=50, choices=CATEGORIES_CHOICES, blank=False)
-    title = models.CharField(max_length=200, blank=False)
-    client = models.CharField(max_length=50, blank=True)
-    service = models.CharField(max_length=50, blank=True)
+    category = models.CharField(max_length=400, choices=CATEGORIES_CHOICES, blank=False)
+    title = models.CharField(max_length=400, blank=False)
+    client = models.CharField(max_length=4000, blank=True)
+    service = models.CharField(max_length=400, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    duration = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
+    duration = models.CharField(max_length=400)
+    country = models.CharField(max_length=200, default="India", editable=False)
     context = models.TextField(blank=True)
-    approach = models.CharField(max_length=50)
+    approach = models.CharField(max_length=400)
     intro_image = models.ImageField(upload_to="projects/", null=False)
     outro_image = models.ImageField(upload_to="projects/", null=True)
     cover_image = models.ImageField(upload_to="projects/", null=True)
@@ -40,9 +41,9 @@ class Project(models.Model):
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=50)
-    news_agency = models.CharField(max_length=50)
-    link = models.URLField(max_length=50)
+    title = models.CharField(max_length=400)
+    news_agency = models.CharField(max_length=400)
+    link = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -51,4 +52,3 @@ class Article(models.Model):
     class Meta:
         verbose_name_plural = "Articles"
         ordering = ["-created_at"]
-
