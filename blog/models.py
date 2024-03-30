@@ -54,7 +54,7 @@ class Article(models.Model):
 
 class Client(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    image = models.ImageField(upload_to="clients/", null=True)
+    image = models.ImageField(upload_to="projects/clients/", null=True)
 
     def __str__(self):
         return self.id
