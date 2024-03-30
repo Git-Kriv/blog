@@ -2,8 +2,6 @@ from typing import DefaultDict
 import uuid
 from django.db import models
 
-# Create your models here.
-
 
 CATEGORIES_CHOICES = (
     ("Transportation Design", "TD"),
@@ -52,3 +50,15 @@ class Article(models.Model):
     class Meta:
         verbose_name_plural = "Articles"
         ordering = ["-created_at"]
+
+
+class Client(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    image = models.ImageField(upload_to="clients/", null=True)
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        verbose_name_plural = "Clients"
+        ordering = ["id"]

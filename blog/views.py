@@ -5,8 +5,13 @@ from rest_framework.pagination import PageNumberPagination
 
 from django.core.mail import send_mail
 
-from blog.models import Project, Article
-from blog.serializers import ProjectSerializer, ArticleSerializer, ProjectMiniSerializer
+from blog.models import Project, Article, Client
+from blog.serializers import (
+    ProjectSerializer,
+    ArticleSerializer,
+    ProjectMiniSerializer,
+    ClientSerializer,
+)
 
 
 PAGE_SIZE = 10
@@ -153,6 +158,20 @@ def send_email(request, format=None):
             fail_silently=False,
         )
         return Response(status=status.HTTP_200_OK)
+    except Exception as e:
+        print(e)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+def get_client(request, format=None):
+    """
+    Get client details.
+    """
+    try:
+        client = Client.objects.all()
+        serializer = ClientSerializer(client, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     except Exception as e:
         print(e)
         return Response(status=status.HTTP_400_BAD_REQUEST)

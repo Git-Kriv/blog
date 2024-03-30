@@ -31,7 +31,7 @@ environ.Env.read_env()
 SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = False
 
 CSRF_TRUSTED_ORIGINS = [
     "https://willing-roll-production.up.railway.app"
@@ -158,7 +158,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Temporary Settings for SMTP Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

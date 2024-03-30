@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
-from blog.models import Project, Article
+from blog.models import Project, Article, Client
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -39,3 +39,9 @@ class ProjectMiniSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         data["cover_image"] = instance.cover_image.url
         return data
+
+
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = "__all__"
