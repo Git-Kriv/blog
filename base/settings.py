@@ -34,12 +34,13 @@ SECRET_KEY = "django-insecure-e*hx-6v*(_b&a5)-ue8^!vut_jux71odt4a-rvnw1j%^t542h@
 DEBUG = False
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://willing-roll-production.up.railway.app"
+    "https://willing-roll-production.up.railway.app",
 ]  # TODO in actual production
 ALLOWED_HOSTS = ["*"]  # TODO: Change this to host IP when deployinnfg
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOWED_ORIGINS = [
     "https://kriv-utpannadesignworks.web.app",
+    "https://utpannadesignworks.com",
 ]
 
 
@@ -139,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 

@@ -149,7 +149,6 @@ def send_email(request, format=None):
     try:
         data = request.data
         message = f" Name: {data['name']}\n Email: {data['email']}\n Company: {data['company']}\n Requirements: {data['requirements']}"
-        print(data)
         send_mail(
             "Mail From Utpanna Website",
             message,

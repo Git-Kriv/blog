@@ -1,4 +1,3 @@
-from typing import DefaultDict
 import uuid
 from django.db import models
 
@@ -54,10 +53,7 @@ class Article(models.Model):
 
 class Client(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    image = models.ImageField(upload_to="projects/clients/", null=True)
-
-    def __str__(self):
-        return self.id
+    image = models.ImageField(upload_to="projects/", null=False)
 
     class Meta:
         verbose_name_plural = "Clients"
