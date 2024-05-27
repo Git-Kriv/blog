@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from PIL import Image, ExifTags
+from PIL import Image, ExifTags, ImageOps
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
@@ -36,6 +36,9 @@ class Project(models.Model):
     def compress_image(self, image):
         img = Image.open(image)
         img_io = BytesIO()
+        img = img.convert("RGB")
+        img = ImageOps.exif_transpose(img)
+
         img.save(img_io, format="JPEG", quality=70)
         img_io.seek(0)
         return InMemoryUploadedFile(
@@ -89,6 +92,8 @@ class Client(models.Model):
     def compress_image(self, image):
         img = Image.open(image)
         img_io = BytesIO()
+        img = img.convert("RGB")
+        img = ImageOps.exif_transpose(img)
         img.save(img_io, format="JPEG", quality=70)
         img_io.seek(0)
         return InMemoryUploadedFile(
