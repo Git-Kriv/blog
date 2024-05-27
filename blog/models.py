@@ -1,6 +1,8 @@
 import uuid
 from django.db import models
-
+from PIL import Image, ExifTags
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 CATEGORIES_CHOICES = (
     ("Transportation Design", "TD"),
@@ -31,9 +33,34 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    def compress_image(self, image):
+        img = Image.open(image)
+        img_io = BytesIO()
+        img.save(img_io, format="JPEG", quality=70)
+        img_io.seek(0)
+        return InMemoryUploadedFile(
+            img_io,
+            "ImageField",
+            image.name,
+            "image/jpeg",
+            img_io.getbuffer().nbytes,
+            None,
+        )
+
     class Meta:
         verbose_name_plural = "Projects"
         ordering = ["-date"]
+
+    def save(self, *args, **kwargs):
+        if self.intro_image:
+            self.intro_image = self.compress_image(self.intro_image)
+        if self.outro_image:
+            self.outro_image = self.compress_image(self.outro_image)
+        if self.cover_image:
+            self.cover_image = self.compress_image(self.cover_image)
+        if self.detail_image:
+            self.detail_image = self.compress_image(self.detail_image)
+        super(Project, self).save(*args, **kwargs)
 
 
 class Article(models.Model):
@@ -58,3 +85,22 @@ class Client(models.Model):
     class Meta:
         verbose_name_plural = "Clients"
         ordering = ["id"]
+
+    def compress_image(self, image):
+        img = Image.open(image)
+        img_io = BytesIO()
+        img.save(img_io, format="JPEG", quality=70)
+        img_io.seek(0)
+        return InMemoryUploadedFile(
+            img_io,
+            "ImageField",
+            image.name,
+            "image/jpeg",
+            img_io.getbuffer().nbytes,
+            None,
+        )
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image = self.compress_image(self.image)
+        super(Client, self).save(*args, **kwargs)
